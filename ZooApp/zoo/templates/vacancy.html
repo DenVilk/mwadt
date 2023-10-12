@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Vacancy page
+{% endblock %}
+
+{% block content %}
+<secion class="vacancies">
+    <h1>Vacancy's</h1>
+    <span>We have some offers for you! If you are interested - <a href="/contacts">contact us</a></span>
+    <div style="display: flex;flex-direction: row;">
+        <div class="vacancy-block">
+            <img src="{% static 'zoo/img/Logo.svg' %}" alt="" width="100px" height="100px">
+            <span style="color:#f5f5f5">Ticket manager</span>
+            <span style="color:#f5f5f5">Salary: 200$</span>
+            <span style="color:#f5f5f5">Education: required</span>
+        </div>
+        <div class="vacancy-block">
+            <img src="{% static 'zoo/img/Logo.svg' %}" alt="" width="100px" height="100px">
+            <span style="color:#f5f5f5">Hall manager</span>
+            <span style="color:#f5f5f5">Salary: 250$</span>
+            <span style="color:#f5f5f5">Education: required</span>
+        </div>
+        <div class="vacancy-block">
+            <img src="{% static 'zoo/img/Logo.svg' %}" alt="" width="100px" height="100px">
+            <span style="color:#f5f5f5">Idiot</span>
+            <span style="color:#f5f5f5">Salary: 230$</span>
+            <span style="color:#f5f5f5">Education: required</span>
+        </div>
+    </div>
+    <div style="display: flex;flex-direction: row;">
+        <div class="vacancy-block">
+            <img src="{% static 'zoo/img/Logo.svg' %}" alt="" width="100px" height="100px">
+            <span style="color:#f5f5f5">Copywrighter</span>
+            <span style="color:#f5f5f5">Salary: 100$</span>
+            <span style="color:#f5f5f5">Education: not required</span>
+        </div>
+        <div class="vacancy-block">
+            <img src="{% static 'zoo/img/Logo.svg' %}" alt="" width="100px" height="100px">
+            <span style="color:#f5f5f5">Cleaner</span>
+            <span style="color:#f5f5f5">Salary: 50$</span>
+            <span style="color:#f5f5f5">Education: not required</span>
+        </div>
+        <div class="vacancy-block">
+            <img src="{% static 'zoo/img/Logo.svg' %}" alt="" width="100px" height="100px">
+            <span style="color:#f5f5f5">Trinee manager</span>
+            <span style="color:#f5f5f5">Salary: - $</span>
+            <span style="color:#f5f5f5">Education: not required</span>
+        </div>
+    </div>
+</secion>
+{% endblock %}

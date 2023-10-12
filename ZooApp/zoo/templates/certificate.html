@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Certificate
+{% endblock %}
+
+{% block content %}
+<section class="certificate">
+    <div class="bg"></div>
+    <img src="{% static 'zoo/img/gg.png' %}" alt="" class="border-img">
+    <div class="header">
+        <p class="name">Certificate</p>
+        <img src="{% static 'zoo/img/Logo.svg' %}" alt="" width="100px" height="100px">
+    </div>
+    <div class="body">
+        <p>Given to <span class="company">Prodigy</span> for compliance with the quality of products.</p>
+        <p>Issued by the Ministry of Quality</p>
+    </div>
+    <!-- <p>Given to the company <span class="company">Prodigy</span></p> -->
+    <div class="footer">
+        <p class="record">record <span class="number">i712346</span></p>
+        <p class="sign">Mr. Siegal | Minister of Quality</p>
+    </div>
+</section>
+{% endblock %}

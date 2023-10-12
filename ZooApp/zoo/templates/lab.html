@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Lab
+{% endblock %}
+
+{% block content %}
+<section class="lab">
+    <p>
+        Тучка лопнула с ут<wbr>ра,<br>
+        Дож<wbr>дик льет — как из ве<wbr>дра. <br>
+        Тучке надобен ремонт,<br>
+        А тебе — хороший зонт. <br>
+    </p>
+
+    <a href="{% static 'zoo/files/CV.pdf' %}" download>My CV</a>
+    <p>A <dfn>ticket</dfn>- a document, which allow you to visit our session.</p>
+    <p>A <dfn>session</dfn>- event of showing the movie.</p>
+    <form style="display:flex; flex-direction: column; justify-content: space-around; height: 200px;">
+        <input type="checkbox" name="gagaga" id="">
+        <input type="text" required placeholder="required">
+        <input type="text" disabled placeholder="disabled">
+        <input type="text" placeholder="enabled">
+        <input type="range" name="huw">
+        <input type="number" max="10" value="15">
+    </form>
+    <q lang="ru">Привет, это цитата на русском</q>
+    <br>
+    <q lang="en">Hi, this quote is in english</q>
+    <br>
+    <code>
+        import uuid <br>
+        from fastapi import APIRouter, FastAPI <br>
+        from fastapi.middleware.cors import CORSMiddleware<br>
+        from fastapi.responses import JSONResponse, RedirectResponse<br>
+        from pydantic import BaseModel<br>
+        from redis import Redis<br>
+        import config<br>
+        <br>
+        <br>
+        class LongLink(BaseModel):<br>
+            link: str<br>
+        
+        token_to_link = Redis(config.REDIS_HOST, config.REDIS_PORT, 0)<br>
+        link_to_token = Redis(config.REDIS_HOST, config.REDIS_PORT, 1)<br>
+        app = FastAPI()<br>
+        <br>
+        <br>
+        origins = [<br>
+            "http://localhost:5173",<br>
+            "http://localhost:8080",<br>
+            "http://frontend:80",<br>
+        ]<br>
+        <br>
+        app.add_middleware(<br>
+            CORSMiddleware,<br>
+            allow_origins=origins,<br>
+            allow_credentials=True,<br>
+            allow_methods=["*"],<br>
+            allow_headers=["*"],<br>
+        )<br>
+        <br>
+        router = APIRouter(<br>
+            prefix = '/api'<br>
+        )<br>
+        <br>
+        @router.get("/health")<br>
+        def health():<br>
+            return {"health": "OK"}<br>
+            <br>
+        @router.post("/")<br>
+        def create_short_url(long_link: LongLink, expires: bool = True):<br>
+            token = None<br>
+            if (token := link_to_token.get(long_link.link)):<br>
+                token = token.decode()<br>
+                return JSONResponse({"short_url": config.SERVICE_ROOT+token}, status_code=208)<br>
+            while True: <br>
+                token = uuid.uuid4().hex[:9]<br>
+                if not token_to_link.get(token):<br>
+                    token_to_link.set(token, long_link.link)<br>
+                    link_to_token.set(long_link.link, token)<br>
+                    return JSONResponse({"short_url": config.SERVICE_ROOT+token}, status_code=201)<br>
+        <br>
+        <br>
+        @router.get("/{token:str}")<br>
+        def redirect(token: str):<br>
+            long_link = token_to_link.get(token)<br>
+            print(long_link)<br>
+            if long_link:<br>
+                long_link = long_link.decode()<br>
+                if not long_link.startswith('http://') and not long_link.startswith('https://'):<br>
+                    return RedirectResponse("http://"+long_link)<br>
+                return RedirectResponse(long_link)<br>
+        <br>
+            return JSONResponse({"message": "No such short link"}, status_code=404)<br>
+        <br>
+        app.include_router(router)<br>
+    </code>
+</section>
+
+{% endblock %}

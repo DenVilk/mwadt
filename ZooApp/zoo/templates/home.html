@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+<h1>Zooland — главная страница</h1>
+{% if request.user.is_superuser %}
+    <p><b>Животные: </b></p>
+    <table>
+        <tr>
+            <th>Вид</th>
+            <th>Возраст, лет</th>
+            <th>Пол</th>
+            <th>Дата поступления</th>
+        </tr>
+        {% for animal in animals %}
+        <tr>
+            <td>{{animal.kind}}</td>
+            <td>{% if animal.arrival_date %}
+                {{ animal.arrival_date }}
+                {% else %}
+                -
+                {% endif %}</td>
+            <td>{% if animal.gender == 'M' %}Мужской{% else %}Женский{% endif %}</td>
+            <td>{{animal.arrival_date}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br><br>
+    <p><b>Зоны и комлпексы: </b></p>
+    <table>
+        <tr>
+            <th>Зона</th>
+            <th>Номер</th>
+            <th>Резервуар</th>
+            <th>Отопление</th>
+            <th>Комплекс</th>
+        </tr>
+        {% for placement in placements %}
+        <tr>
+            <td>{{placement.name}}</td>
+            <td>{{placement.number}}</td>
+            <td>{% if placement.reservoir %} Есть {% else %} Нет {% endif %}</td>
+            <td>{% if placement.heating %} Есть {% else %} Нет {% endif %}</td>
+            <td>{{placement.complex_area.complex_name}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td>Всего зон:</td>
+            <td colspan="3">{{placements.count}}</td>
+            <td></td>
+
+        </tr>
+    </table>
+{% else %}
+    {% if request.user.is_authenticated %}
+        <p><b>ФИО:</b> {{request.user.employee.lastname}} {{request.user.employee.firstname}} {{employee.patronymic}} </p>
+        <p><b>Должность:</b> {{request.user.employee.job.job_title}}</p>
+        <p><b>Номер телефона:</b> {{request.user.employee.phone}}</p>
+        <p><b>Пол:</b> {{request.user.employee.gender}}</p>
+        {% if request.user.employee.animals.all %}
+            <p><b>Работает со следующими животными: </b></p>
+            <table>
+                <tr>
+                    <th>Вид</th>
+                    <th>Возраст, лет</th>
+                    <th>Пол</th>
+                    <th>Дата поступления</th>
+                    <th>Зона</th>
+                    <th>Номер зоны</th>
+                    <th>Комплекс</th>
+                </tr>
+                {% for animal in request.user.employee.animals.all %}
+                    <tr>
+                        <td>{{animal.kind.kind}}</td>
+                        <td>{% if animal.age %}{{animal.age}}{% else %}—{% endif %}</td>
+                        <td>{% if animal.gender == 'M' %}Мужской{% else %}Женский{% endif %}</td>
+                        <td>{% if animal.arrival_date %}
+                            {{ animal.arrival_date }}
+                            {% else %}
+                            -
+                            {% endif %}</td>
+                        <td>{{animal.placement.name}}</td>
+                        <td>{{animal.placement.number}}</td>
+                        <td>{{animal.placement.complex_area.complex_name}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <br><br>
+            <p><b>Питание:</b></p>
+            <table>
+                <tr>
+                    <th>Вид</th>
+                    <th>Чем кормить</th>
+                </tr>
+                {% for animal in request.user.employee.animals.all %}
+                    <tr>
+                        <td>{{animal.kind.kind}}</td>
+                        <td>
+                            <ul>
+                                {% for food in animal.food.all %}
+                                    <li>{{food.food}}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    {% endif %}
+    <h2>Животные зоопарка: </h2>
+    <p><b>Всего видов:</b> {{animals.count}}</p>
+    <br>
+    <table>
+        <tr>
+            <th>Вид (Класс)</th>
+            <th>Возраст, лет</th>
+            <th>Страна</th>
+            <th>Описание</th>
+            <th>Подробнее</th>
+        </tr>
+        {% for animal in animals %}
+        <tr>
+            <td>{{animal.kind}}</td>
+            <td>{% if animal.age %}
+                    {{animal.age}} 
+                    {% if animal.age == 1 %} 
+                        год 
+                    {% elif animal.age > 4 %} 
+                        лет 
+                    {% else %} 
+                        года 
+                    {% endif %}
+            {% else %}
+                -
+                {% endif %}</td>
+            <td>{{animal.country.country}}</td>
+            <td>{{animal.description}}</td>
+            <td><a href="{% url 'animal_detail' animal.id %}">Link</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+<h2>Last news</h2>
+<hr>
+<article class="last-post">
+    <h3>
+        {{last_post.title}} <span class="post-time">{{last_post.created_at}}</span>
+    </h3>
+    <div class="content">
+        {% if last_post.img %}
+            <img width="200px" src="/media/{{ last_post.img }}">
+        {% endif %}
+        <p>
+            {{last_post.content|truncatewords:7}}
+            <br>
+            <a href="{% url 'post_detail' last_post.pk%}">Читать далее...</a>
+        </p>
+    </div>
+</article>
+<hr>
+{% include "includes/advertise.html" %}
+{% endblock %}
