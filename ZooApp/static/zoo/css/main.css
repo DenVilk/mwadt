@@ -131,6 +131,11 @@ article>.content>img {
     background: linear-gradient(180deg, rgba(41, 235, 194, 1) 0%, rgba(20, 23, 233, 1) 100%);
 }
 
+.advertise:hover h3{
+    transform: scale(120%);
+    animation: myAnim 2s ease 0s 1 alternate forwards;
+}
+
 .advertise>* {
     margin: 0;
     padding: 0;
@@ -295,9 +300,34 @@ table {
     align-items: center;
 }
 
-.column>a {
+.column .link {
     margin: 0 10px;
     box-sizing: border-box;
+    background: #fefefe;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    text-align: center;
+    padding: auto 0;
+
+}
+
+.column .link a,
+.column .link a>img{
+    border-radius: 25px;
+    min-height: 50px;
+    min-width: 50px;
+    max-height: 50px;
+    max-width: 50px;
+    box-sizing: border-box;
+    display: block;
+}
+
+.column .link a:hover{
+    background: #EB7272;
+    -webkit-box-shadow: 0px 1px 28px 17px rgba(255, 255, 255, 0.2);
+    -moz-box-shadow: 0px 1px 28px 17px rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 1px 28px 17px rgba(255, 255, 255, 0.2);
 }
 
 section.rates {
@@ -453,19 +483,22 @@ section.lab {
     grid-row: 1;
 }
 
-.certificate .border-img {
+/* .certificate .border-img { */
+.border-img{
     position: absolute;
-    left: 0;
+    left: calc(50% - 450px);
     top: 108px;
     height: 500px;
     width: 900px;
-    z-index: 2;
-
+    z-index: 5;
+    background: url('/static/zoo/img/gg.png') no-repeat;
+    background-size: 900px 500px;
+    background-position: center;
 }
 
 .bg{
     position: absolute;
-    left: 0;
+    left: calc(50% - 450px);
     top: 108px;
     height: 500px;
     width: 900px;
@@ -528,4 +561,65 @@ section.lab input[type='range']::-webkit-slider-thumb
     border-radius: 5px;
     cursor: ew-resize;
     background-color: #304bad;
+}
+
+section.form textarea:active,
+section.form textarea:focus,
+section.form input:active,
+section.form input:focus{
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    border: 1px solid black;
+    outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+section.form input,
+section.form textarea{
+    border-radius: 10px;
+    min-width: 350px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+@media screen and (width < 800px) {
+    .advertise{
+        background: red;
+    }
+}
+
+.company-name{
+    font-kerning: none;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+@keyframes myAnim {
+	0%,
+	100% {
+		transform: translateY(0%);
+		transform-origin: 50% 50%;
+	}
+
+	15% {
+		transform: translateY(-20px);
+	}
+
+	30% {
+		transform: translateY(10px);
+	}
+
+	45% {
+		transform: translateY(-10px);
+	}
+
+	60% {
+		transform: translateY(6px);
+	}
+
+	75% {
+		transform: translateY(-4px);
+	}
 }

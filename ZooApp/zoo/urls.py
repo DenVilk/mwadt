@@ -25,4 +25,5 @@ urlpatterns = [
     path('lab/', views.LabView.as_view(), name='lab'),
     path("vacancy/", views.VacancyView.as_view(), name="vacancy"),
     path("promo/", views.PromoView.as_view(), name="promo"),
+    path("statistics/", views.StatisticsView.as_view(), name="statistics"),
 ]

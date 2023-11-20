@@ -19,6 +19,7 @@ from zoo.forms import (
     RateForm,
     RegistrationForm,
 )
+import plotly.express as px
 
 # Создаем логгер
 logger = logging.getLogger("main")
@@ -212,3 +213,49 @@ class PromoView(generic.View):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
+
+
+class StatisticsView(generic.View):
+    template_name = "statistics.html"
+
+    def get(self, request, *args, **kwargs):
+        animals = Animal.objects.all().order_by("arrival_date")
+        count = {}
+        for animal in animals:
+            count[animal.arrival_date] = count.get(animal.arrival_date, 0) + 1
+        l = sorted(list(count.keys()))
+        res = [count[l[0]]]
+        for item in l[1:]:
+            res.append(res[-1]+count[item])
+        td=px.area(
+            x=l,
+            y=res,
+            title='Arrived animals',
+            labels={'x':'Date', 'y':"Count"}
+        )
+
+        posts = Post.objects.all().order_by('created_at')
+        count = {}
+        for animal in posts:
+            print(animal.created_at)
+            count[animal.created_at] = count.get(animal.created_at, 0) + 1
+        l = sorted(list(count.keys()))
+        res = [count[l[0]]]
+        for item in l[1:]:
+            res.append(res[-1]+count[item])
+        print(l)
+        print(res)
+        hd=px.area(
+            x=l,
+            y=res,
+            title='Created posts',
+            labels={'x':'Date', 'y':"Count"}
+        )
+        return render(
+            request,
+            self.template_name,
+            {
+                'animals_stat': td.to_html(),
+                'posts_stat': hd.to_html(),
+            }
+        )
