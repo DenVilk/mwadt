@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+Blog
+{% endblock %}
+
+{% block content %}
+{% for post in object_list %}
+<article itemscope itemtype="http://schema.org/Article" class="post-list">
+    <meta itemprop="inLanguage" content="ru" />
+    <h3 itemprop="name">
+        {{post.title}}
+    </h3>
+    <time class="post-time" datetime="{{post.created_at}}">{{post.created_at}}</time>
+    <div class="content" itemprop="articleBody">
+        {% if post.img %}
+            <img width="200px" src="/media/{{ post.img }}">
+        {% endif %}    
+        <p>
+            {{post.content|truncatewords:7}}
+            <br>
+            <a href="{% url 'post_detail' post.pk%}">Читать далее...</a>
+        </p>
+    </div>
+</article>
+<hr>
+{% endfor %}
+{% endblock %}

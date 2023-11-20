@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+About us
+{% endblock %}
+
+{% block content %}
+<section class="about">
+    <div class="about-name">
+        <img src="{% static 'zoo/img/Logo.svg' %}" alt="" class="logo-large">
+        <p>Prodigy</p>
+    </div>
+    <hr>
+    <p>
+        Prodigy - компания, занимающаяся разработкой и техническим сопровождением программных продуктов
+        и вычислительных систем. <br>Компания Prodigy была создана в 2020 коду Великовичем Владимиром с целью
+        защиты авторских прав своих разработок.
+        Первое название данной компании было Denvilk Studio, но в 2023 году, компания произвела ребрендинг, сменив логотип и название на текущее.
+    </p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hSqWaQlu7SY?si=1hcGFtTo7PkFYk7e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <br>
+    <a href="{% url 'certificate' %}">Сертификат соответствия качества</a>
+</section>
+{% endblock %}

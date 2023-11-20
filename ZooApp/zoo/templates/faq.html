@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+FAQ
+{% endblock %}
+
+{% block content %}
+<h1><abbr title="Frequently Asked Questions">FAQ</abbr></h1>
+<section class="faq">
+    {% for faq in object_list %}
+    <details>
+        <summary>{{faq.question}} (задан {{faq.created_at}})</summary>
+        {{faq.answer|safe}}
+    </details>
+    {% endfor %}
+{% endblock %}

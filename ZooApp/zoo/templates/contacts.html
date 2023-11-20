@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Contacts
+{% endblock %}
+
+{% block content %}
+<h1>Contacts</h1>
+    {% for employee in object_list %}
+    <figure style="display: flex; flex-direction: row;">
+        {% if employee.photo %}
+            <img style="width:300px;" src="{{employee.photo.url}}" alt="" />
+        {% else %}
+            <img style="width: 300px;" src="{% static 'zoo/img/Logo.svg' %}">
+        {% endif %}
+        <figcaption>
+            <ul style="font-size: 15pt;">
+                <li>{{employee.lastname}}</li>
+                <li>{{employee.firstname}}</li>
+                <li>{{employee.patronymic}}</li>
+                <li>{{employee.job}}</li>
+                <li><a href="tel: {{employee.phone}}">{{employee.phone}}</a></li>
+            </ul>
+        </figcaption>
+    </figure>
+    {% endfor %}
+{% endblock %}

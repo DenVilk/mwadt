@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Животные в помещениях
+{% endblock %}
+
+{% block content %}
+<h1>Животные {{ placement.name }}</h1>
+<ul>
+    {% for animal in placement.animal_set.all %}
+    <li><a href="{% url 'animal_detail' animal.id %}">{{ animal }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

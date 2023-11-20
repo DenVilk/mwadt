@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Животные
+{% endblock %}
+
+{% block content %}
+<div style="width: 700px">
+    <img width="700px" src="{{animal.img}}">
+    <p><b>Вид:</b> {{animal.kind.kind}} </p>
+    <p><b>Класс:</b> {{animal.kind.class_name.class_name}}</p>
+    {% if animal.age %}
+        <p>
+            <b>Возраст:</b> {{animal.age}} 
+            {% if animal.age == 1 %} 
+                год 
+            {% elif animal.age > 4 %} 
+                лет 
+            {% else %} 
+                года 
+            {%endif %}
+        </p>
+    {% endif %}
+    <p><b>Страна:</b> {{animal.country.country}} </p>
+    <p align="justify">{{animal.description}} </p>
+</div>
+{% endblock %}

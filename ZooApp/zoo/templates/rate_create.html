@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+Отзыв
+{% endblock %}
+
+{% block content %}
+<section class="form">
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Create</button>
+    </form>
+</section>
+{% endblock %}

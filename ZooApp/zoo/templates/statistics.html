@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}
+Statistics
+{% endblock %}
+
+{% block content %}
+{{animals_stat|safe}}
+{{posts_stat|safe}}
+{% endblock %}

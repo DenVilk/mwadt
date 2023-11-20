@@ -1,0 +1,36 @@
+{% load static %}
+<footer>
+    <div class="links">
+        <div class="column first">
+            <a href="{% url 'privacy' %}">Terms</a>
+            <a href="{% url 'faq' %}">FAQ</a>
+            <a href="{% url 'rate_list' %}">Rates</a>
+            <a href="{% url 'registration' %}">Register</a>
+            <a href="{% url 'promo' %}">Promocodes</a>
+            <a href="{% url 'vacancy' %}">Vacancies</a>
+            <a href="{% url 'statistics' %}">Statistics</a>
+        </div>
+        <div class="column second">
+            <a href="{% url 'contacts' %}">Contacts</a>
+            <a href="{% url 'about' %}">Company</a>
+            <a href="{% url 'lab' %}">lab</a>
+            <a href="{% url 'post_list' %}">Blog</a>
+        </div>
+        <div class="column third sponsors">
+            <div class="link">
+                <a href="https://t.me/fksis" target="_blank">
+                    <img src="{% static 'zoo/img/fcsan.svg' %}" alt="" class="sponsor-logo">
+                </a>
+            </div>
+            <div class="link">
+                <a href="https://t.me/bsuir_open" target="_blank">
+                    <img src="{% static 'zoo/img/bsuir_open.svg' %}" alt=   "" class="sponsor-logo">
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <p class="copyright">
+        &copy; 2023 Developed by <a href="http://github.com/prodigy-by">Prodigy.by</a>
+    </p>
+</footer>
