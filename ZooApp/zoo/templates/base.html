@@ -17,16 +17,20 @@
         setInterval(updateDateTime, 1000);
     </script>
     <link rel="stylesheet" href="{% static 'zoo/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'zoo/css/blackjack.css' %}">
     <link rel="icon" type="image/png" href="{% static 'zoo/img/Logo.svg' %}"/>
 </head>
 
 <body>
     {% include 'includes/header.html' %}
+    {% block extra_content %}
+    {% endblock %}
     <main>
         {% block content %}
         {% endblock %}
     </main>
     {% include 'includes/footer.html' %}
 </body>
-
+    {% block scripts %}{% endblock %}
+    <script src="{% static 'zoo/js/main.js' %}"></script>
 </html>

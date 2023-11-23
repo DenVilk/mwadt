@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 Registration
@@ -6,9 +7,13 @@ Registration
 
 {% block content %}
 <h2>Registration</h2>
-<form method="post">
+<form method="post" id="registration-form">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Register</button>
 </form>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'zoo/js/registration.js' %}"></script>
 {% endblock %}

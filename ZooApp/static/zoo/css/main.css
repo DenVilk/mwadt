@@ -131,7 +131,7 @@ article>.content>img {
     background: linear-gradient(180deg, rgba(41, 235, 194, 1) 0%, rgba(20, 23, 233, 1) 100%);
 }
 
-.advertise:hover h3{
+.advertise:hover h3 {
     transform: scale(120%);
     animation: myAnim 2s ease 0s 1 alternate forwards;
 }
@@ -250,7 +250,7 @@ footer a:hover {
     justify-content: space-between;
     z-index: 20;
     background: #1D2C39;
-    
+
 }
 
 .certificate:after {
@@ -259,7 +259,7 @@ footer a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity : 1;
+    opacity: 1;
     z-index: 30;
 }
 
@@ -313,7 +313,7 @@ table {
 }
 
 .column .link a,
-.column .link a>img{
+.column .link a>img {
     border-radius: 25px;
     min-height: 50px;
     min-width: 50px;
@@ -323,7 +323,7 @@ table {
     display: block;
 }
 
-.column .link a:hover{
+.column .link a:hover {
     background: #EB7272;
     -webkit-box-shadow: 0px 1px 28px 17px rgba(255, 255, 255, 0.2);
     -moz-box-shadow: 0px 1px 28px 17px rgba(255, 255, 255, 0.2);
@@ -373,7 +373,7 @@ code::after {
     margin: 0px 10px 10px 0px;
 }
 
-.vacancy-block > img{
+.vacancy-block>img {
     float: right;
 }
 
@@ -484,7 +484,7 @@ section.lab {
 }
 
 /* .certificate .border-img { */
-.border-img{
+.border-img {
     position: absolute;
     left: calc(50% - 450px);
     top: 108px;
@@ -496,7 +496,7 @@ section.lab {
     background-position: center;
 }
 
-.bg{
+.bg {
     position: absolute;
     left: calc(50% - 450px);
     top: 108px;
@@ -520,23 +520,23 @@ figure img {
     background: #1D2C39;
 }
 
-iframe{
+iframe {
     border: 5px inset blue;
 }
 
-article.post-list .content>p{
+article.post-list .content>p {
     /* width: 100%; */
     white-space: nowrap;
     overflow-x: scroll;
 }
 
-article.post-detail p{
+article.post-detail p {
     column-width: 14em;
     column-gap: 2em;
     column-rule: 1px solid #ccc;
 }
 
-details > summary {
+details>summary {
     padding: 5px;
     background-color: #eee;
     color: #333;
@@ -544,17 +544,17 @@ details > summary {
     cursor: pointer;
 }
 
-details > div {
+details>div {
     border: 1px #ccc solid;
     padding: 10px;
 }
-details[open] > summary {
-    color:#eee; 
-    background-color:#333;
+
+details[open]>summary {
+    color: #eee;
+    background-color: #333;
 }
 
-section.lab input[type='range']::-webkit-slider-thumb
-{
+section.lab input[type='range']::-webkit-slider-thumb {
     width: 15px;
     -webkit-appearance: none;
     height: 15px;
@@ -566,7 +566,7 @@ section.lab input[type='range']::-webkit-slider-thumb
 section.form textarea:active,
 section.form textarea:focus,
 section.form input:active,
-section.form input:focus{
+section.form input:focus {
     -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
@@ -577,7 +577,7 @@ section.form input:focus{
 }
 
 section.form input,
-section.form textarea{
+section.form textarea {
     border-radius: 10px;
     min-width: 350px;
     border-style: solid;
@@ -586,40 +586,88 @@ section.form textarea{
 }
 
 @media screen and (width < 800px) {
-    .advertise{
+    .advertise {
         background: red;
     }
 }
 
-.company-name{
+.company-name {
     font-kerning: none;
     font-family: 'Times New Roman', Times, serif;
 }
 
 @keyframes myAnim {
-	0%,
-	100% {
-		transform: translateY(0%);
-		transform-origin: 50% 50%;
-	}
 
-	15% {
-		transform: translateY(-20px);
-	}
+    0%,
+    100% {
+        transform: translateY(0%);
+        transform-origin: 50% 50%;
+    }
 
-	30% {
-		transform: translateY(10px);
-	}
+    15% {
+        transform: translateY(-20px);
+    }
 
-	45% {
-		transform: translateY(-10px);
-	}
+    30% {
+        transform: translateY(10px);
+    }
 
-	60% {
-		transform: translateY(6px);
-	}
+    45% {
+        transform: translateY(-10px);
+    }
 
-	75% {
-		transform: translateY(-4px);
-	}
+    60% {
+        transform: translateY(6px);
+    }
+
+    75% {
+        transform: translateY(-4px);
+    }
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.matrix .body{
+    width: 100%;
+}
+
+.matrix .row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.ele{
+    margin-right: 10px;
+}
+
+.even{
+    background-color: blue;
+}
+
+.odd{
+    background-color: red;
+}
+
+#cars-block{
+    display: flex;
+    flex-direction: row;
+}
+#cars-block > *{
+    padding: 0 10px;
+}
+
+#cars-block > *:not(:last-child){
+    border-right: 1px solid black;
+}
+
+.filterWrapper{
+    display:flex;
+    flex-direction: row;
 }

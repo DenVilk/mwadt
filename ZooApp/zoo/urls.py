@@ -26,4 +26,8 @@ urlpatterns = [
     path("vacancy/", views.VacancyView.as_view(), name="vacancy"),
     path("promo/", views.PromoView.as_view(), name="promo"),
     path("statistics/", views.StatisticsView.as_view(), name="statistics"),
+    path("lab3/", views.Lab3.as_view(), name="lab3"),
+    path("ads/", views.advertisement, name="ads"),
+    path("anim/", views.AnimationView.as_view(), name="anim"),
+    path("custom/", views.CustonView.as_view(), name="custom"),
 ]

@@ -167,3 +167,19 @@ class FAQ(models.Model):
 
     def __str__(self):
         return f"FAQ: {self.question} {self.created_at}"
+
+class Settings(models.Model):
+    name = models.CharField(max_length=100)
+    value = models.TextField()
+
+    def __str__(self):
+        return self.value
+
+
+class Ads(models.Model):
+    name = models.CharField(max_length=100)
+    link = models.CharField(max_length=500)
+    photo = models.ImageField()
+
+    def __str__(self):
+        return self.name
