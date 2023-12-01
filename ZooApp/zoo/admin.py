@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from .models import (
     FAQ,
+    Ads,
     Animal,
     Class,
     Complex,
@@ -11,6 +12,7 @@ from .models import (
     Job,
     Kind,
     Placement,
+    Settings,
     User,
     Post,
 )
@@ -37,3 +39,5 @@ admin.site.register(Job)
 admin.site.register(User)
 admin.site.register(Post)
 admin.site.register(FAQ)
+admin.site.register(Settings)
+admin.site.register(Ads)

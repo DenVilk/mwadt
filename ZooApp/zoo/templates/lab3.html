@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Lab3
+{% endblock %}
+
+{% block content %}
+
+
+<div class="board">
+    <div class="main">
+        <div class="player-2" id="robot-hand">
+        </div>
+        <div class="player-1" id="player-hand">
+        </div>
+    </div>
+    <div class="side">
+        <select name="board-background" id="board-bg">
+            <option value="green">Зеленый</option>
+            <option value="blue">Синий</option>
+            <option value="wood">Дерево</option>
+        </select>
+        <div class="text">Сыграйте со мной в 21!</div>
+        <button id="new">Новая игра</button>
+        <button id="add">Взять еще карту</button>
+        <button id="stop">Хватит</button>
+    </div>
+</div>
+<hr>
+<div class="matrix">
+    <h1>Matrix</h1>
+    <input type="number" id="N" min="2" max="15">
+    <input type="number" id="K" min="2" max="15">
+    <button id="trsp-btn">Transponate</button>
+    <button id="add-row">Add row</button>
+    <button id="add-column">Add column</button>
+    <div class="body" id="matrix-body">
+    </div>
+</div>
+<hr>
+<br>
+<h1>Advertisement</h1>
+{% if request.user.is_superuser %}
+<form method="post">
+    {% csrf_token %}
+    <input type="number" name="interval" id="interval">
+    <button type="submit">Change</button>
+</form>
+{% endif %}
+
+<a target="_blank">
+    <img alt="Здесь могла быть ваша реклама" class="ads" id="ads">
+</a>
+
+<hr>
+<h1>Cars</h1>
+<form id="cars-block" class="form-control">
+    <div id="add-block">
+        <h5>Add</h5>
+        Brand: <input id="brand" type="text"><br>
+        Number: <input id="number" type="text"><br>
+        Surname: <input id="surname" type="text"><br>
+        <button id="add-car">Add</button>
+    </div>
+    <div id="search-block">
+        <h5>Search</h1>
+        </h5>
+        Brand: <input id="brand-search" type="text"><br>
+    </div>
+    <div class="search-result">
+        <h5>Results</h5>
+        <table id="result">
+            <thead>
+                <tr>
+                    <th>Brand</th>
+                    <th>Name</th>
+                    <th>Number</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'zoo/js/blackjack.js' %}"></script>
+<script src="{% static 'zoo/js/square.js' %}"></script>
+<script src="{% static 'zoo/js/ads.js' %}"></script>
+<script src="{% static 'zoo/js/cars.js' %}"></script>
+
+{% endblock %}

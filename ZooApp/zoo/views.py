@@ -4,14 +4,18 @@ from django.shortcuts import (
     render,
 )
 from django.contrib.auth import login
+from django.conf import settings
+from django.http import HttpResponse
 from zoo.models import (
     FAQ,
+    Ads,
     Animal,
     Client,
     Employee,
     Placement,
     Post,
     Rate,
+    Settings,
 )
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -32,7 +36,7 @@ class IndexView(generic.View):
         placements = Placement.objects.all()
         return render(
             request,
-            "home.html",
+            "animation.html",
             {
                 "placements": placements,
                 "animals": animals,
@@ -111,19 +115,9 @@ class PlacementsDetailView(generic.DetailView):
     model = Placement
 
 
-# class StatisticsView(LoginRequiredMixin, generic.TemplateView):  # страничка
-#     template_name = "statistics"
-
-#     def get(self, request, *args, **kwargs):
-#         return super().get(request, *args, **kwargs)
-
-
 class FAQView(generic.ListView):
     template_name = "faq.html"
     queryset = FAQ.objects.all().order_by("created_at")
-
-    # def get(self, request, *args, **kwargs):
-    #     return render(request, self.template_name)
 
 
 class AboutView(generic.View):
@@ -199,6 +193,20 @@ class LabView(generic.View):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
+    
+
+class CustonView(generic.View):
+    template_name = "custom.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class AnimationView(generic.View):
+    template_name = "animation.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
 
 
 class VacancyView(generic.View):
@@ -243,8 +251,6 @@ class StatisticsView(generic.View):
         res = [count[l[0]]]
         for item in l[1:]:
             res.append(res[-1]+count[item])
-        print(l)
-        print(res)
         hd=px.area(
             x=l,
             y=res,
@@ -259,3 +265,33 @@ class StatisticsView(generic.View):
                 'posts_stat': hd.to_html(),
             }
         )
+
+class Lab3(generic.View):
+    template_name = "lab3.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+    def post(self, request, *args, **kwargs):
+        interval = Settings.objects.get(id=1)
+        if "interval" in request.POST.keys():
+            interval.value = str(request.POST["interval"])
+            interval.save()
+        return render(request, self.template_name)
+
+
+def advertisement(request):
+    import json
+    p = []
+    for ad in Ads.objects.all():
+        p.append({
+            "name" : ad.name,
+            "link" : ad.link,
+            "image": ad.photo.url,
+        })
+    interval, created = Settings.objects.get_or_create(name="interval", defaults={"value": 5})
+    l = {
+        "photos": p,
+        "interval": int(interval.value) * 1000
+    }
+    return HttpResponse(json.dumps(l), content_type="application/json")
