@@ -70,6 +70,7 @@ window.addEventListener("load", () => {
             // Определение дня недели
             const dayOfWeek = getDayOfWeek(birthDate);
             alert(`Ваш возраст: ${age} лет. День недели вашего рождения: ${dayOfWeek}`);
+            localStorage.setItem("age18", true);
         } else {
             // Алерт о необходимости разрешения родителей
             let res = confirm('Вы несовершеннолетний. Для использования сайта необходимо разрешение родителей.');
