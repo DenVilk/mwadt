@@ -1,0 +1,51 @@
+
+table {
+    border-collapse: collapse;
+    width: 700px;
+}
+
+td,
+th {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+tr {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+td {
+    text-align: center;
+}
+
+tr:first-child {
+    background-color: #292727;
+    color: white
+}
+
+tr:nth-child(2n+1):not(:first-child) {
+    background-color: #aeaeae;
+}
+
+tr:not(:first-child) {
+    border-top: none;
+}
+
+td:not(:first-child) {
+    border-left: none;
+}
+
+td:empty {
+    background: lawngreen;
+}
+
+td > a{
+    color: white;
+}
+td > a:hover{
+    color: rgb(64, 64, 64);
+}
+td > a:visited{
+    color: white;
+}

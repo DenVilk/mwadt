@@ -1,0 +1,25 @@
+.input-block{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.input-field {
+    padding: 0 10px;
+    border-radius: 15px;
+    min-width: 200px;
+    border: 1.5px solid #333333;
+    min-height: 30px;
+    width: 80%;
+}
+
+.input-field:focus, .input-field:hover {
+    border: 1.5px solid #ff6262;
+    outline: none;
+}
+
+label{
+    margin-right: 5px;
+}

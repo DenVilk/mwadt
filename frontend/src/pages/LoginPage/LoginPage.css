@@ -1,0 +1,11 @@
+#root{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.card-login{
+    height: 400px;
+    width: 400px;
+    margin: auto 0;
+}

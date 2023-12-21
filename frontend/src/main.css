@@ -1,0 +1,15 @@
+body, .root{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bg-blue{
+    background-color: #4f4ff2;
+    color: white;
+}
+
+.bg-red{
+    background-color: #f2524f;
+    color: white;
+}

@@ -1,0 +1,23 @@
+.sidebar{
+    height: 100vh;
+    width: 250px;
+
+    /* position: fixed;
+    left:0; */
+
+    -webkit-box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
+
+    background: rgb(41,235,194);
+    background: linear-gradient(180deg, rgba(41,235,194,1) 0%, rgba(255,255,255,1) 20%, rgba(252,252,252,1) 100%);
+}
+
+.sidebar > * {
+    padding: 10px;
+}
+
+.sidebar-header{
+    border-bottom: 1px solid black;
+    height: 50px;
+}

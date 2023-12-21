@@ -1,0 +1,17 @@
+.logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+}
+
+.logo > img{
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+}
+
+.logo > p{
+    font-size: 20px;
+    margin: 0 10px;
+}

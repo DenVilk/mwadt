@@ -1,0 +1,41 @@
+
+nav {
+    display: flex;
+    flex-direction: row;
+    width: calc(100% - 30px);
+    justify-content: space-between;
+    background: #292727;
+    padding: 15px;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav>ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+nav>ul>li {
+    margin: 0 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+nav a:visited {
+    color: white;
+}
+
+nav a:hover {
+    color: gray;
+}
+
+nav>* {
+    margin: 0;
+}
